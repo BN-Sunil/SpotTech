@@ -1,0 +1,180 @@
+<html>
+<head>
+    <title>Teacher Details Form</title>
+    <style>
+    *{
+        font-family: 'poppins',sans serif;
+        }
+        html{
+            height: 100%;
+            margin: 0;
+            background-image: url("{{ url_for('static', filename='images/b18.png') }}");
+            background-size: cover;
+        }
+
+
+        form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color:transparent;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        width: 400px;
+        height:360px;
+        margin: 0 auto;
+        margin-top: 10%;
+    }
+    
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+
+    label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        width: 100%;
+        font-weight: bold;
+        max-width: 400px;
+    }
+
+
+    label span {
+        flex-basis: 30%;
+        text-align: right;
+        margin-right: 20px;
+        width: 100px;
+        box-sizing: border-box;
+    }
+    .success {
+            text-align: center;
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .error {
+        text-align: center;
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+        
+    }
+
+
+
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        flex-basis: 60%;
+        font-size: 16px;
+        width: 100%;
+    }
+
+
+    #submit-button {
+        background-color: #0a2c5b;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 16px;
+        width: 50%;
+        max-width: 200px;
+    }
+
+
+    .error {
+        color: red;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+    #btn1 {
+  background-color: green;
+  
+}
+#b1{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background-color: transparent;
+    border: none;
+}
+
+
+</style>
+</head>
+<body>
+    <button onclick="goBack()" id="b1"><img src="{{ url_for('static', filename='images/arr.png') }}" alt="back button"></button>   
+    <form method="post" action="/teachervalue">
+        <h1>Teacher Entry Form</h1>
+        <label>
+            <span>ID:</span>
+            <input type="text" id="id" name="id" required>
+        </label>
+        <label>
+            <span>Name:</span>
+            <input type="text" id="name" name="name"  title="name should be only in character" required >
+        </label>
+        <label>
+            <span>Password:</span>
+            <input type="text" id="password" name="password" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^\w\d\s:])(.{8,})$" title="Password must contain at least 8 characters, including 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character." required>
+            
+        </label>
+        <label>
+            <span>Subject:</span>
+            <input type="text" id="subject" name="subject"  required>
+        </label>
+        <label>
+            <span>Email:</span>
+            <input type="email" id="email" name="email" required>
+        </label>
+        <button type="submit" id="submit-button" >Save</button>
+        
+        
+    </form>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+        {% if success %}
+        <p class="success">{{ success }}</p>
+       {% endif %}
+    <script>
+        function goBack() {
+            window.location.href = "{{ url_for('admini') }}";
+        }
+        const submit= document.getElementById("submit-button");
+        
+        submit.addEventListener("click", function() {
+          // Get the values of the username and password fields
+          const id = document.getElementById("id").value;
+          const name= document.getElementById("name").value;
+          const password= document.getElementById("password").value;
+          const subject= document.getElementById("subject").value;
+          const email= document.getElementById("email").value;
+        
+          // Check if either the username or password is empty
+          if (!id|| !name||!password ||!subject ||!email) {
+            // If either field is empty, display an error message
+            alert("Please fill all the fields .");
+            return;
+          }
+        
+        });
+        
+    </script>
+</body>
+
+
+</html>

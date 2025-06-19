@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Attendance</title>
+	<style>
+
+html{
+            background-image:url("{{ url_for('static', filename='images/b18.png') }}");
+            background-size: cover;
+  background-repeat:no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+        }
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			margin-top: 20px;
+		}
+
+		th, td {
+			text-align: center;
+			padding: 8px;
+			border-bottom: 1px solid #ddd;
+		}
+
+		th {
+			background-color: #0b6e66;
+			color: white;
+		}
+
+		.search-bar {
+			margin-bottom: 20px;
+			text-align: right;
+		}
+
+		.search-bar input[type="text"] {
+			padding: 5px;
+			width: 200px;
+		}
+
+		.heading {
+			text-align: center;
+			font-weight: bold;
+			font-size: 50px
+		}
+		#form1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 100px;
+  margin-right: 20px;
+}
+
+	
+	</style>
+</head>
+<body>
+	<h1 class="heading">Attendance Sheet</h1>
+	<form id="form1" action="{{ url_for('searchteach') }}" method="POST">
+		<label >Enter Date:</label>
+		<input type="text" id="date" name="search" required>
+		<input type="submit" value="Search">
+	</form>
+	<button id="back"  onclick="goBack()"><img src="{{ url_for('static', filename='images/arr.png') }}" alt="Time Table"></button>
+	<table id="attendance">
+		<tr>
+			<th>Roll No</th>
+			<th>Period 1</th>
+			<th>Period 2</th>
+			<th>Period 3</th>
+			<th>Period 4</th>
+			<th>Period 5</th>
+			<th>Period 6</th>
+			<th>Period 7</th>
+			<th>Period 8</th>
+			
+		</tr>
+		<tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+				<td>{{ row[5] }}</td>
+				<td>{{ row[6] }}</td>
+				<td>{{ row[7] }}</td>
+				<td>{{ row[8] }}</td>
+				
+    
+            </tr>
+            {% endfor %}
+        </tbody>
+	</table>
+	
+
+	<script>
+		var input = document.getElementById("date");
+
+// Set the default value
+input.value = "dd-mm-yy";
+
+// Clear the default value when the input is clicked
+input.addEventListener("click", function() {
+	if (input.value === "dd-mm-yy") {
+		input.value = "";
+	}
+});
+
+function goBack() {
+            window.location.href = "{{ url_for('teach') }}";
+        }
+	</script>
+</body>
+</html>

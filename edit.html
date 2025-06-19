@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Roll Number</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("{{ url_for('static', filename='images/b18.png') }}");
+			background-size: cover;
+    }
+
+    .container {
+      margin-bottom: 100px;
+      max-width: 400px;
+      margin: 100px auto 0; /* Adjust the top margin as per your preference */
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color:transparent;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #075263;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .item {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .item a {
+      text-decoration: none;
+    }
+
+    .item button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0a6e84;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .item button:hover {
+      background-color: #45a049;
+    }
+    .save {
+        text-align: center;
+        color:green;
+        font-weight: bold;
+        margin-top: 25px;
+        
+    }
+  </style>
+</head>
+<body>
+  <button id="back"  onclick="goBack()"><img src="{{ url_for('static', filename='images/arr.png') }}" alt="Time Table"></button>
+  <div class="container">
+    <h2>Edit Roll Number</h2>
+    <form id="editForm" method="POST" action="/update_attendance" required>
+      <div class="form-group">
+        <label for="rollnumber">Roll Number:</label>
+        <input type="text" id="rollnumber" name="rollnumber" required>
+      </div>
+      <div class="form-group">
+        <label for="period">Period:</label>
+        <input type="text" id="period" name="period" required>
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required>
+      </div>
+      <button class="btn" type="submit" id="edit">Edit</button>
+    </form>
+  </div>
+  <div class="item">
+    <a href="{{ url_for('att') }}"><button>View Attendance</button></a>
+  </div>
+  {% if update %}
+	<p class="save">{{ update }}</p>
+	{% endif %}
+</body>
+
+<script>
+
+function goBack() {
+          window.location.href = "{{ url_for('teach') }}";
+      }
+      
+                   
+        const edit = document.getElementById("edit");
+        
+        edit.addEventListener("click", function() {
+          // Get the values of the username and password fields
+          const rollno = document.getElementById("rollnumber").value;
+          const period= document.getElementById("period").value;
+          const status= document.getElementById("status").value;
+        
+          // Check if either the username or password is empty
+          if (!rollno|| !period||!status) {
+            // If either field is empty, display an error message
+            alert("Please fill all the fields .");
+            return;
+          }
+        
+        });
+                
+</script>
+</html>

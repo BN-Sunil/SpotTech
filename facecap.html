@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample picture capture</title>
+	<style>
+		html{
+			height: 100%;
+			margin: 0;
+			background-image: url("{{ url_for('static', filename='images/b18.png') }}");
+			background-size: cover;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color:transparent;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+			width: 400px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+	
+
+		label {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 10px;
+			width: 100%;
+			font-weight: bold;
+			max-width: 400px;
+		}
+
+		label span {
+			flex-basis: 30%;
+			text-align: right;
+			margin-right: 20px;
+			width: 100px;
+			box-sizing: border-box;
+		}
+
+		input[type="text"] {
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			flex-basis: 60%;
+			font-size: 16px;
+			width: 100%;
+		}
+
+		#b2{
+			background-color: #075263;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-top: 10px;
+			font-size: 16px;
+			width: 50%;
+			max-width: 200px;
+		}
+
+		.error {
+			color: red;
+			margin-top: 5px;
+			font-size: 14px;
+		}
+		#b1{
+			background-color:transparent;
+			margin-left: 60px;
+			margin-top: 15px;
+			border: none;
+		}
+		
+			#p {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.success {
+            text-align: center;
+        color: green;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+		
+	</style>
+</head>
+<body>
+	<button onclick="goBack()" id="b1"><img src="{{ url_for('static', filename='images/arr.png') }}" alt="back button"></button>
+	<h1 id="p">Take Images</h1>
+    <form action="{{url_for('take_images')}}" method="POST">
+        <label for="roll_number">Roll Number:</label>
+        <input type="text" id="roll_number" name="roll_number" required><br><br>
+        <input type="submit" value="Take Picture" id="b2">
+    </form>
+	{% if msg %}
+	<p class="success">{{ msg }}</p>
+   {% endif %}
+	<script>
+		function goBack() {
+			window.location.href = "{{ url_for('admini') }}";
+		}
+		const submit= document.getElementById("b2");
+        
+        submit.addEventListener("click", function() {
+          // Get the values of the username and password fields
+          
+          
+          const rollno= document.getElementById("roll_number").value;
+          
+        
+          // Check if either the username or password is empty
+          if ( !rollno ) {
+            // If either field is empty, display an error message
+            alert("Please enter roll number.");
+            return;
+          }
+        
+        });
+		</script>
+
+</body>
+</html>

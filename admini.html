@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>adminhomepage</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-image:  url("{{ url_for('static', filename='images/b18.png') }}");
+            background-size: cover;
+        }
+		.container {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);/*change 1*/
+			grid-gap: 35px;
+			padding: 40px;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+
+		.item {
+
+            background-color:transparent;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+		.item:hover {
+			transform: translateY(-5px);
+			box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.item img {
+			width: 50px;
+			height: 50px;
+			margin-bottom: 10px;
+		}
+
+		.item:nth-child(8) img {/*change 2*/
+			width: 80px;
+			height: 60px;
+		}
+
+		.item a {
+			text-decoration: none;
+			color: #333;
+		}
+
+		.item button {
+			background-color: #075263;
+			
+            /*change the colour*/
+			color: black;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			margin-top: 10px;
+			transition: all 0.3s ease-in-out;
+		}
+
+		.item button:hover {
+			background-color: rgb(86, 70, 193);
+		}
+		.error {
+        text-align: center;
+        color: red;
+        font-weight: bold;
+        margin-top: -15px;
+        
+    }
+	.save {
+        text-align: center;
+        color:green;
+        font-weight: bold;
+        margin-top: -30px;
+        
+    }
+	</style>
+</head>
+<body>
+	<button onclick="goBack()" id="b1"><img src="{{ url_for('static', filename='images/arr.png') }}" alt="Time Table"></button>
+	<div class="container">
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/reg.jpg') }}" alt="Teacher Entry">
+			<a href="{{ url_for('techent') }}"><button style="color:aliceblue">Teacher Entry</button></a>
+		</div>
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/todo.jpg') }}" alt="View List">
+			<a href="{{ url_for('techview') }}"><button style="color:aliceblue">Teacher List</button></a>
+		</div>
+        <div class="item">
+			<img src="{{ url_for('static', filename='images/tblcrp3.jpg') }}" alt="Sample picture">
+			<a href="{{ url_for('facecap') }}"><button style="color:aliceblue">Sample Picture</button></a>
+		</div>
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/reg.jpg') }}" alt="Student Entry">
+			<a href="{{ url_for('studentry') }}"><button style="color:aliceblue">Student Entry</button></a>
+		</div>
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/todo.jpg') }}" alt="Student List">
+			<a href="{{ url_for('studentview') }}"><button style="color:aliceblue">Student List</button></a>
+		</div>
+		
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/tai.jpg') }}" alt="View Attendance">
+			<a href="{{ url_for('encode_faces') }}"><button style="color:aliceblue">Train dataset</button></a>
+		</div>
+
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/uu.jpg') }}" alt="Take Attendance">
+			<a href="{{ url_for('video_feed') }}"><button style="color:aliceblue">Take Attendance</button></a>
+        </div>
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/view.jpg') }}" alt="Student List">
+			<a href="{{ url_for('attenddis') }}"><button style="color:aliceblue">View Attendance</button></a>
+		</div>
+		
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/save.jpg') }}" alt="Save">
+			<a href="{{ url_for('permanentsave') }}"><button style="color:aliceblue">Save</button></a>
+		</div>
+		
+    </div>
+	{% if permansaveerror %}
+	<p class="error">{{ permansaveerror }}</p>
+	{% endif %}
+	{% if permansave %}
+	<p class="save">{{ permansave }}</p>
+	{% endif %}
+	{% if msg %}
+	<p class="save">{{ msg }}</p>
+	{% endif %}
+</body>
+<script>
+	function goBack() {
+		window.location.href = "{{ url_for('loginsh') }}";
+	}
+	</script>
+</html>

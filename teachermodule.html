@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>teacherhomepage</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-image: url("{{ url_for('static', filename='images/b18.png') }}");
+			background-size: cover;
+		}
+		
+		.container {
+			
+			display: grid;
+			grid-template-columns: repeat(2, 2fr);/*change 1*/
+			grid-gap: 20px;
+			padding: 40px;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+
+		.item {
+			background-color: transparent;
+			padding: 10px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+			transition: all 0.3s ease-in-out;
+			margin-bottom: 20px;
+			
+		}
+
+		.item:hover {
+			transform: translateY(-5px);
+			box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+		}
+
+		.item img {
+			width: 80px;
+			height: 80px;
+			margin-bottom: 5px;
+		}
+		.item:nth-child(5) {
+			grid-column: span 2;
+		}
+		.item a {
+			text-decoration: none;
+			color: #333;
+		}
+
+		.item button {
+			background-color: #0d28a1;
+			color: black;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+			margin-top: 10px;
+			transition: all 0.3s ease-in-out;
+			width: 100%;
+		}
+
+		.item button:hover {
+			background-color: #1e12cc;
+		}
+        .save {
+        text-align: center;
+        color:green;
+        font-weight: bold;
+        margin-top: -15px;
+        
+    }
+	</style>
+</head>
+<body>
+	<button onclick="goBack()" id="b1"><img src="{{ url_for('static', filename='images/arr.png') }}" alt="Back"></button>
+	<div class="container">
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/view.jpg') }}" alt="View Time">
+			<a href="{{ url_for('att') }}"><button style="color: aliceblue;">View attendance</button></a>
+		</div>
+
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/edit.jpg') }}"alt="Edit">
+			<a href="{{ url_for('update') }}"><button style="color: aliceblue;">Edit attendance</button></a>
+		</div>
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/email.jpg') }}" alt="Message">
+			<a href="{{ url_for('emailsend') }}"><button style="color: aliceblue;">Sent email</button></a>
+		</div>
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/generate.jpg') }}" alt="Generate Report">
+			<a href="{{ url_for('generate_report') }}"><button style="color: aliceblue;">Generate report</button></a>
+		</div>
+		<div class="item">
+			<img src="{{ url_for('static', filename='images/report.jpg') }}" alt="Generate Report">
+			<a href="{{ url_for('viewreport') }}"><button style="color: aliceblue;">View report</button></a>
+		</div>
+		
+		
+	</div>
+    {% if sent %}
+	<p class="save">{{ sent }}</p>
+	{% endif %}
+	{% if gen %}
+	<p class="save">{{ gen }}</p>
+	{% endif %}
+</body>
+<script>
+	function goBack() {
+		window.location.href = "{{ url_for('loginsh') }}";
+	}
+	</script>
+</html>

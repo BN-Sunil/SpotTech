@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            *{
+font-family: 'poppins',sans serif;
+}
+body {
+    background-image:url("{{ url_for('static', filename='images/b15.png') }}");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.box{
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 90vh;
+}
+.container{
+    margin-top: 100px;
+width: 350px;
+font-size:small;
+display:flex;
+flex-direction: column;
+padding: 0 15px 0 15px ;
+}
+header{
+color:#fff;
+font-size: 30px;
+display:flex;
+justify-content:center;
+padding: 10px 0  10px 0;
+}
+.inputfield{
+display: flex;
+flex-direction: column;
+
+
+}
+.input{
+height: 45px;
+width: 87%;
+border: none;
+outline: none;
+border-radius: 30px;
+color: #fff;
+padding: 0 0 0 45px;
+background: rgba(255,255,255,0.1);
+}
+i{
+position: relative;
+top: -29px;
+left: 19px;
+color: #fff;
+
+
+}
+span{
+position: absolute;
+right:505px;
+transform: translate(0,-50%);
+top:53.6%;
+cursor:pointer;
+
+
+}
+
+
+::-webkit-input-placeholder{
+color: #fff;
+}
+
+
+.submit{
+border: none;
+border-radius: 30px;
+font-size: 15px;
+height: 45px;
+outline:none;
+width:100%;
+background:rgba(255,255,255,0.7);
+cursor: pointer;
+transition: .3s;
+}
+.submit:hover{
+box-shadow: 1px 5px 7px 1px rgba(0,0,0,0.3);
+}
+.bottom{
+display: flex ;
+flex-direction: row;
+justify-content: space-between;
+font-size:small;
+color:#fff;
+margin-top: 10px;
+
+
+}
+.toggle-password {
+position: relative;
+cursor: pointer;
+top: -25px;
+left: 5px;
+}
+#eye-icon {
+position: absolute;
+top: -32px;
+right: 250px;
+left:310px;
+font-size: 1.2em;
+color: #999;
+}
+.error {
+        text-align: center;
+        color: red;
+        font-weight: bold;
+        margin-top: -65px;
+        font-size: 13px;
+        
+    }
+</style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+           <title>admin login</title>
+    </head>
+    <body>
+        <form action="{{url_for('admin')}}" method="post">
+        <div class="box">
+            <div class="container">
+                <div class='top-header'>
+                    <header >Admin Login</header>&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="inputfield">
+                    <input type="text" class="input" placeholder="Username" id="username" name="username" required>
+                    <i class="fa fa-user"></i>&nbsp;&nbsp;
+                </div>
+                
+                <div class="inputfield">
+                    <input type="password" class="input" placeholder="Password" id="password" name="password" required>
+                    
+                   <i class="fa fa-lock" ></i>&nbsp;&nbsp;
+                   <span class="toggle-password" onclick="togglePasswordVisibility()">
+                    <i class="fa fa-eye-slash" id="eye-icon"></i>
+                  </span>
+                    
+                </div>
+                <div class="inputfield">
+                    <input type="submit" class="submit" value="Login" id="login-button"  >&nbsp;&nbsp;
+                </div>
+                <div class="bottom">
+                    <div class="right">
+                        <a href="{{ url_for('loginsh') }}">Teacher</a>
+                    </div>
+                    
+                </div>
+
+
+            </div>
+        </div>
+        {% if error %}
+                <p class="error">{{ error }}</p>
+                {% endif %}
+        <script>
+            function togglePasswordVisibility() {
+  var passwordInput = document.getElementById("password");
+  var eyeIcon = document.getElementById("eye-icon");
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    eyeIcon.classList.remove("fa-eye-slash");
+    eyeIcon.classList.add("fa-eye");
+  } else {
+    passwordInput.type = "password";
+    eyeIcon.classList.remove("fa-eye");
+    eyeIcon.classList.add("fa-eye-slash");
+  }
+}
+const loginButton = document.getElementById("login-button");
+
+
+loginButton.addEventListener("click", function() {
+  // Get the values of the username and password fields
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+
+  // Check if either the username or password is empty
+  if (!username || !password) {
+    // If either field is empty, display an error message
+    alert("Please enter both your username and password.");
+    return;
+  }
+
+
+}
+);
+
+
+        </script>
+  </form>      
+    </body>
+</html>
